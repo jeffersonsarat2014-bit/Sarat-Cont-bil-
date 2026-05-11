@@ -1,0 +1,63 @@
+import React from 'react'; import { View, Text, ScrollView, TouchableOpacity, StyleSheet, SafeAreaView, } from 'react-native';
+
+export default function App() { const cards = [ { title: 'Clientes', value: '128' }, { title: 'Notas', value: '1.245' }, { title: 'Receitas', value: 'R$ 86 mil' }, { title: 'Pendências', value: '12' }, ];
+
+const clients = [ 'Mercado Silva', 'Auto Peças MT', 'Loja Centro', 'Distribuidora Cuiabá', ];
+
+const tasks = [ 'Enviar SPED Fiscal', 'Fechar Folha', 'Emitir DAS', 'Conferir impostos', ];
+
+return ( <SafeAreaView style={styles.container}> <ScrollView> <View style={styles.header}> <Text style={styles.logo}>Contabilidade PRO</Text> <Text style={styles.subtitle}> Sistema Android para escritório contábil </Text> </View>
+
+<View style={styles.grid}>
+      {cards.map((item, index) => (
+        <View key={index} style={styles.card}>
+          <Text style={styles.cardTitle}>{item.title}</Text>
+          <Text style={styles.cardValue}>{item.value}</Text>
+        </View>
+      ))}
+    </View>
+
+    <View style={styles.section}>
+      <Text style={styles.sectionTitle}>Clientes</Text>
+
+      {clients.map((client, index) => (
+        <View key={index} style={styles.listItem}>
+          <Text style={styles.listText}>{client}</Text>
+        </View>
+      ))}
+    </View>
+
+    <View style={styles.section}>
+      <Text style={styles.sectionTitle}>Agenda Fiscal</Text>
+
+      {tasks.map((task, index) => (
+        <View key={index} style={styles.taskItem}>
+          <Text style={styles.listText}>{task}</Text>
+        </View>
+      ))}
+    </View>
+
+    <View style={styles.section}>
+      <Text style={styles.sectionTitle}>Módulos</Text>
+
+      <View style={styles.modulesGrid}>
+        {[
+          'Financeiro',
+          'Fiscal',
+          'Folha',
+          'Relatórios',
+          'Fluxo de Caixa',
+          'Impostos',
+        ].map((module, index) => (
+          <TouchableOpacity key={index} style={styles.moduleButton}>
+            <Text style={styles.moduleText}>{module}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+    </View>
+  </ScrollView>
+</SafeAreaView>
+
+); }
+
+const styles = StyleSheet.create({ container: { flex: 1, backgroundColor: '#f1f5f9', }, header: { backgroundColor: '#1d4ed8', padding: 25, borderBottomLeftRadius: 30, borderBottomRightRadius: 30, }, logo: { fontSize: 28, fontWeight: 'bold', color: '#fff', }, subtitle: { color: '#dbeafe', marginTop: 5, fontSize: 15, }, grid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', padding: 15, }, card: { width: '48%', backgroundColor: '#fff', padding: 20, borderRadius: 20, marginBottom: 15, elevation: 3, }, cardTitle: { color: '#64748b', fontSize: 14, }, cardValue: { fontSize: 24, fontWeight: 'bold', marginTop: 10, color: '#0f172a', }, section: { backgroundColor: '#fff', margin: 15, borderRadius: 25, padding: 20, elevation: 2, }, sectionTitle: { fontSize: 22, fontWeight: 'bold', marginBottom: 15, color: '#0f172a', }, listItem: { backgroundColor: '#f8fafc', padding: 15, borderRadius: 15, marginBottom: 10, }, taskItem: { backgroundColor: '#eff6ff', padding: 15, borderRadius: 15, marginBottom: 10, }, listText: { fontSize: 15, color: '#334155', }, modulesGrid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', }, moduleButton: { width: '48%', backgroundColor: '#2563eb', padding: 18, borderRadius: 18, marginBottom: 12, }, moduleText: { color: '#fff', fontWeight: 'bold', textAlign: 'center', }, });
